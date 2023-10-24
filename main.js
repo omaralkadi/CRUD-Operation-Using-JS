@@ -72,14 +72,12 @@ function DeleteData(id)
    cancelButtonColor: '#d33',
    confirmButtonText: 'Yes, delete it!'
    }).then((result) => {
-
+   if (result.isConfirmed) {
     users = JSON.parse(localStorage.getItem("users") || "[]");
     let filteredData=users.filter(item=>item.id!=id);
     console.log(filteredData);
     localStorage.setItem("users",JSON.stringify(filteredData));
     ShowData();
-
-   if (result.isConfirmed) {
     Swal.fire(
       'Deleted!',
       'Your Data has been deleted.',
